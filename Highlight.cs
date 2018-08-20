@@ -179,7 +179,14 @@ namespace Facepunch
         private void OnValidate()
         {
             if ( TargetCamera == null )
+            {
                 TargetCamera = GetComponent<Camera>();
+            }
+
+            if ( TargetCamera != null && TargetCamera.depthTextureMode == DepthTextureMode.None )
+            {
+                TargetCamera.depthTextureMode = DepthTextureMode.Depth;
+            }
 
             ReleaseAll();
             RebuildCommandBuffer();
