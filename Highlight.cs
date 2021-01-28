@@ -150,7 +150,11 @@ namespace Facepunch
             {
                 if ( !r ) continue;
 
-                commandBuffer.DrawRenderer( r, MeshRenderMaterial );
+                int submeshCount = r.sharedMaterials.Length;
+                for (int smi = 0; smi < submeshCount; smi++)
+                {
+                    commandBuffer.DrawRenderer( r, MeshRenderMaterial, smi );
+                }
             }
 
             //
